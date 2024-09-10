@@ -6,11 +6,14 @@ warnings.filterwarnings('ignore')
 
 # 通过torch.hub(pytorch中专注于迁移学的工具)获得已经训练好的bert-base-chinese模型
 # model =  torch.hub.load('huggingface/pytorch-transformers', 'model', 'bert-base-chinese')
-model = BertModel.from_pretrained('bert-base-chinese')
+# model = BertModel.from_pretrained('bert-base-chinese')
 
 # 获得对应的字符映射器, 它将把中文的每个字映射成一个数字
 # tokenizer = torch.hub.load('huggingface/pytorch-transformers', 'tokenizer', 'bert-base-chinese')
-tokenizer = BertTokenizer.from_pretrained('bert-base-chinese')
+# tokenizer = BertTokenizer.from_pretrained('bert-base-chinese')
+
+tokenizer = BertTokenizer.from_pretrained('../resources/bert-base-chinese/')
+model = BertModel.from_pretrained('../resources/bert-base-chinese')
 
 
 def get_bert_encode_for_single(text):

@@ -17,5 +17,5 @@ print(torch.cuda.get_device_name(0))  # 返回第一个GPU设备的名称
 
 
 #定义一个device对象
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)

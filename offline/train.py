@@ -11,7 +11,7 @@ from bert_chinese_encode import get_bert_encode_for_single
 from RNN_MODEL import RNN
 
 
-train_data = pd.read_csv('../doctor_data/train_data.csv', header=None, encoding='utf-8', sep='\t')
+train_data = pd.read_csv('../resources/doctor_data/train_data.csv', header=None, encoding='utf-8', sep='\t')
 
 # 打印正负标签比例
 print(dict(Counter(train_data[0].values)))
@@ -44,7 +44,7 @@ def randomTrainExample(train_data):
 #     category, line, category_tensor, line_tensor = randomTrainExample(train_data)
 #     print('category:', category, '/ line:', line, '/ category_tensor:', category_tensor, '/ line_tensor:', line_tensor)
 
-
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # 构建模型训练函数
 # 选取损失函数为NullLoss()
 criterion = nn.NLLLoss()
@@ -55,6 +55,7 @@ learning_rate = 0.005
 input_size = 768
 hidden_size = 128
 output_categories = 2
+
 
 
 # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -129,9 +130,11 @@ def timeSince(since):
 
 # 第4步： 调用训练和验证函数
 # 设置迭代次数为50000步
-n_iters = 50000
+# n_iters = 50000
+n_iters = 1000
 # 设置打印间隔为1000步
-plot_every = 1000
+# plot_every = 1000
+plot_every = 100
 # 初始化打印间隔中训练和验证的损失和准确率
 train_current_loss = 0
 train_current_acc = 0
